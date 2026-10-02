@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Washer IoT Portal | Voice-Controlled Energy &amp; Billing Monitor</title>
+  <meta name="description" content="Vintage scrapbook journal styled IoT dashboard for Voice-Controlled Washing Machine with real-time PZEM-004T telemetry, electricity billing, female voice synthesis, Kannada support, and hardware specimen gallery.">
+  
+  <!-- Google Fonts: Caveat (Handwritten), Outfit (Modern sans), JetBrains Mono, Share Tech Mono & Noto Sans Kannada -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&family=Share+Tech+Mono&family=Noto+Sans+Kannada:wght@400;600;700;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="scrapbook-body lang-en">
+  
+  <!-- Vintage Paper Grain & Sketch Texture Background Layer -->
+  <div class="vintage-paper-overlay" aria-hidden="true"></div>
+
+  <!-- Full-Page Ambient Glitter Particle Sparkle Layer -->
+  <div class="glitter-particles-layer" id="glitterParticlesLayer" aria-hidden="true"></div>
+
+  <!-- Scrapbook Journal Desk Canvas Container -->
+  <div class="scrapbook-desk">
+    
+    <!-- Top Field Notes Navigation Bar -->
+    <header class="scrapbook-header">
+      <!-- Left: Brand Sketch & Field Notes Logo -->
+      <div class="header-left-brand">
+        <div class="brand-sketch">
+          <svg class="flower-doodle" viewBox="0 0 40 70" fill="none" stroke="#4a3e2c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Hand-drawn Flower Motif from Reference Image -->
+            <path d="M20 70 C 18 50, 22 35, 18 18"/>
+            <path d="M19 45 C 10 40, 6 48, 18 45"/>
+            <path d="M19 32 C 28 26, 32 34, 19 33"/>
+            <!-- Flower petals -->
+            <circle cx="18" cy="16" r="4" fill="#4a3e2c"/>
+            <path d="M18 12 C 16 6, 20 6, 18 12"/>
+            <path d="M22 16 C 28 14, 28 18, 22 16"/>
+            <path d="M18 20 C 20 26, 16 26, 18 20"/>
+            <path d="M14 16 C 8 18, 8 14, 14 16"/>
+          </svg>
+          <div class="brand-text-block">
+            <span class="field-notes-title">IoT Field Notes</span>
+            <span class="field-notes-sub">Vol. 04 &bull; Washing Machine Lab</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Language Switcher -->
+      <div class="header-right-tools">
+
+        <!-- Language Switcher: English / ಕನ್ನಡ -->
+        <div class="scrapbook-lang-box" id="langSwitcherContainer">
+          <span class="lang-pin">📌</span>
+          <span class="lang-caption" id="langSwitchLabel">Language:</span>
+          <div class="lang-pill-row">
+            <button type="button" class="scrap-lang-btn active" id="btnLangEn" data-lang="en">EN</button>
+            <button type="button" class="scrap-lang-btn" id="btnLangKn" data-lang="kn">ಕನ್ನಡ</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- =========================================================================
+         HERO TITLE BLOCK WITH GLITTERING SHIMMER POP EFFECT & WASHI TAPE
+         ========================================================================= -->
+    <section class="scrapbook-hero-banner">
+      <!-- Washi tape at top-left and top-right -->
+      <div class="washi-tape tape-top-left"></div>
+      <div class="washi-tape tape-top-right"></div>
+      
+      <!-- Cute Pink Smiley Sticker Motif (Directly from Reference Image) -->
+      <div class="pink-smiley-sticker" aria-hidden="true">
+        <svg viewBox="0 0 50 50">
+          <circle cx="25" cy="25" r="23" fill="#f472b6" stroke="#db2777" stroke-width="1.5"/>
+          <!-- Eyes -->
+          <circle cx="18" cy="20" r="3" fill="#831843"/>
+          <circle cx="32" cy="20" r="3" fill="#831843"/>
+          <!-- Big Smile -->
+          <path d="M 15 28 Q 25 38 35 28" fill="none" stroke="#831843" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <!-- Hand-drawn Star Doodles around the title -->
+      <div class="star-doodle star-1">&#10022;</div>
+      <div class="star-doodle star-2">&#10023;</div>
+      <div class="star-doodle star-3">&#10022;</div>
+
+      <!-- Glittering Pop Title Container -->
+      <div class="glitter-hero-wrapper">
+        <div class="node-status-tag">
+          <span class="handwritten-arrow">&#10554;</span>
+          <span class="status-pin-text" id="espNodeStatus">ESP32 NODE // ONLINE</span>
+        </div>
+
+        <div class="title-sparkle-container">
+          <h1 class="glitter-pop-title" id="mainHeaderTitle">
+            <span id="titlePrefix">Smart Washer</span> <span class="highlight-glitter" id="titleYou">IoT</span> <span id="titleSuffix">Portal</span>
+          </h1>
+        </div>
+
+        <p class="hero-handwritten-subtitle" id="headerSubtitle">
+          Voice-Controlled Washing Machine with Energy &amp; Billing Monitor
+        </p>
+      </div>
+
+      <!-- Tabs Switcher Styled as Vintage Folder Tabs -->
+      <nav class="folder-tabs-nav" aria-label="Portal Navigation">
+        <button class="folder-tab-btn active" id="tabLiveDashboard" data-target="live-dashboard-section" role="tab" aria-selected="true">
+          <span class="tab-paper-clip">📎</span>
+          <span id="tabLabelLiveDashboard">Live Dashboard</span>
+        </button>
+        <button class="folder-tab-btn" id="tabHardwareGallery" data-target="hardware-gallery-section" role="tab" aria-selected="false">
+          <span class="tab-paper-clip">🏷️</span>
+          <span id="tabLabelHardwareGallery">Hardware Components Gallery</span>
+          <span class="tab-counter-badge" id="tabChipCount">8 Units</span>
+        </button>
+      </nav>
+    </section>
+
+    <!-- Quick Telemetry Stamp Bar -->
+    <div class="scrapbook-status-strip">
+      <div class="strip-item">
+        <span class="strip-label" id="metaLabelRelay">RELAY LOAD:</span>
+        <span class="strip-badge relay-tag" id="relayStatusTag">OFFLINE</span>
+      </div>
+      <div class="strip-sep">&bull;</div>
+      <div class="strip-item">
+        <span class="strip-label" id="metaLabelTariff">TARIFF:</span>
+        <span class="strip-highlight" id="metaValTariff">₹8.50/kWh</span>
+      </div>
+      <div class="strip-sep">&bull;</div>
+      <div class="strip-item">
+        <span class="strip-label" id="metaLabelSensor">PZEM SENSOR:</span>
+        <span class="strip-ok" id="metaValSensor">ACTIVE (UART)</span>
+      </div>
+      <div class="strip-sep">&bull;</div>
+      <div class="strip-item">
+        <span class="strip-label" id="metaLabelVoice">SPEECH AUDIO:</span>
+        <span class="strip-voice" id="metaValVoice">Female Voice (ಸಕ್ರಿಯ)</span>
+      </div>
+    </div>
+
+    <!-- =========================================================================
+         SECTION 1: LIVE DASHBOARD
+         ========================================================================= -->
+    <main id="live-dashboard-section" class="tab-content active" role="tabpanel">
+      
+      <!-- Tumbler Alert Banner (Styled as Warning Paper Tape) -->
+      <div class="alert-paper-banner" id="tumblerAlertBanner">
+        <div class="warning-tape-border"></div>
+        <div class="alert-banner-inner">
+          <div class="alert-icon-sign">⚠️</div>
+          <div class="alert-copy">
+            <h3 class="alert-title-text" id="alertTitleText">CRITICAL MAINTENANCE: TUMBLER FILTER ALERT ACTIVE</h3>
+            <p class="alert-desc-text" id="alertDescText">
+              Washing cycle finished. Lint &amp; debris detected in drum tumbler filter. DFPlayer female voice alert triggered. Micro limit switch or voice command required to clear.
+            </p>
+          </div>
+          <button class="btn-clear-alert-tape" id="btnQuickClearAlert">
+            Clear Alert Now &rarr;
+          </button>
+        </div>
+      </div>
+
+      <!-- =====================================================================
+           TELEMETRY CARDS (Torn Kraft Paper & Lined Notebook Aesthetic)
+           Card 1: Power (W)
+           Card 2: Energy (kWh)
+           Card 3: Calculated Bill (₹)
+           ===================================================================== -->
+      <div class="section-label-sketch">
+        <span class="sketch-handwritten-title" id="headingLiveMetrics">Live Telemetry Cards</span>
+        <span class="sketch-underline"></span>
+      </div>
+
+      <section class="telemetry-scrapbook-grid" aria-label="Live Electrical Telemetry">
+        
+        <!-- CARD 1: ACTIVE POWER (Watts) - Styled as Kraft Paper Note with Tape -->
+        <article class="scrapbook-card card-kraft" id="cardPower">
+          <div class="washi-tape tape-card-center"></div>
+          <div class="card-sketch-header">
+            <div class="card-header-left">
+              <span class="paper-cat-tag" id="catPower">REAL-TIME DEMAND</span>
+              <h3 class="paper-card-title" id="titlePower">Active Power</h3>
+            </div>
+            <!-- Lightning Icon Stamp -->
+            <div class="kraft-stamp-badge power-badge">
+              <svg class="stamp-svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="card-main-reading">
+            <div class="digit-display">
+              <span class="reading-num" id="powerValue">0.0</span>
+              <span class="reading-unit">W</span>
+            </div>
+            <!-- Vintage Gauge Bar -->
+            <div class="vintage-gauge-wrap">
+              <div class="vintage-gauge-track">
+                <div class="vintage-gauge-fill" id="powerGaugeFill" style="width: 2%;"></div>
+              </div>
+              <div class="vintage-gauge-legend">
+                <span>0 W</span>
+                <span id="gaugeMaxPower">Max: 2200 W</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer-notes">
+            <div class="note-col">
+              <span class="note-label" id="labelMains">AC Mains</span>
+              <span class="note-val" id="voltageValue">230.4 V</span>
+            </div>
+            <div class="note-divider"></div>
+            <div class="note-col">
+              <span class="note-label" id="labelCurrent">Current</span>
+              <span class="note-val" id="currentValue">0.00 A</span>
+            </div>
+            <div class="note-divider"></div>
+            <div class="note-col">
+              <span class="note-label" id="labelPF">Power Factor</span>
+              <span class="note-val" id="pfValue">0.97</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 2: TOTAL ENERGY (Cumulative kWh) - Lined Paper Note with Paperclip -->
+        <article class="scrapbook-card card-ruled" id="cardEnergy">
+          <div class="washi-tape tape-card-left"></div>
+          <div class="card-sketch-header">
+            <div class="card-header-left">
+              <span class="paper-cat-tag" id="catEnergy">CUMULATIVE CONSUMPTION</span>
+              <h3 class="paper-card-title" id="titleEnergy">Total Energy</h3>
+            </div>
+            <!-- Leaf / Battery Icon Stamp -->
+            <div class="kraft-stamp-badge energy-badge">
+              <svg class="stamp-svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17 6c-3.5 0-7 2-9 5-2.5 3.8-1 9-1 9s5.2 1.5 9-1c3-2 5-5.5 5-9 0-2.2-1.8-4-4-4zm-2.5 9c-1.5 0-3-1.5-3-3s1.5-3 3-3 3 1.5 3 3-1.5 3-3 3z"/>
+                <path d="M4 14c0 3 2 6 5 7M6 18c-2-2-3-4.5-3-7"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="card-main-reading">
+            <div class="digit-display">
+              <span class="reading-num" id="energyValue">0.0000</span>
+              <span class="reading-unit">kWh</span>
+            </div>
+            <!-- Vintage Gauge Bar for Energy -->
+            <div class="vintage-gauge-wrap">
+              <div class="vintage-gauge-track">
+                <div class="vintage-gauge-fill fill-energy" id="energyBarFill" style="width: 5%;"></div>
+              </div>
+              <div class="vintage-gauge-legend">
+                <span>0 kWh</span>
+                <span>EEPROM Synced</span>
+              </div>
+            </div>
+            <div class="meter-note-row">
+              <span id="labelEeprom">PZEM Internal EEPROM Log</span>
+              <span class="sync-dot-text" id="eepromSync">&bull; Synced</span>
+            </div>
+          </div>
+
+          <div class="card-footer-notes">
+            <div class="note-col">
+              <span class="note-label" id="labelWashUnits">Wash Units</span>
+              <span class="note-val" id="washUnitsVal">0.000 kWh</span>
+            </div>
+            <div class="note-divider"></div>
+            <div class="note-col">
+              <span class="note-label" id="labelCo2">Est. CO₂</span>
+              <span class="note-val" id="co2Value">0.00 kg</span>
+            </div>
+            <div class="note-divider"></div>
+            <div class="note-col">
+              <span class="note-label" id="labelEff">Efficiency</span>
+              <span class="note-val badge-grade" id="valEff">Grade A+</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 3: CALCULATED BILL (Rupees ₹) - Parchment Invoice Card -->
+        <article class="scrapbook-card card-invoice" id="cardBill">
+          <div class="washi-tape tape-card-right"></div>
+          <div class="card-sketch-header">
+            <div class="card-header-left">
+              <span class="paper-cat-tag" id="catBill">REAL-TIME TARIFF ACCRUAL</span>
+              <h3 class="paper-card-title" id="titleBill">Calculated Bill</h3>
+            </div>
+            <!-- Indian Rupee Stamp -->
+            <div class="kraft-stamp-badge bill-badge">
+              <span class="rupee-char">₹</span>
+            </div>
+          </div>
+
+          <div class="card-main-reading">
+            <div class="digit-display">
+              <span class="rupee-symbol-prefix">₹</span>
+              <span class="reading-num" id="billValue">0.00</span>
+            </div>
+            <div class="formula-stamp">
+              <span id="labelFormula">Formula: </span>
+              <code id="formulaCode">kWh × ₹8.50/unit</code>
+            </div>
+          </div>
+
+          <div class="card-footer-notes">
+            <div class="note-col">
+              <span class="note-label" id="labelCycleCost">Cycle Cost</span>
+              <span class="note-val" id="cycleCostVal">₹0.00</span>
+            </div>
+            <div class="note-divider"></div>
+            <div class="note-col">
+              <span class="note-label" id="labelHourlyBurn">Hourly Burn</span>
+              <span class="note-val" id="hourlyBurnVal">₹0.00/h</span>
+            </div>
+            <div class="note-divider"></div>
+            <div class="note-col">
+              <span class="note-label" id="labelBillingCycle">Billing Cycle</span>
+              <span class="note-val" id="valBillingCycle">Real-time</span>
+            </div>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- =====================================================================
+           CENTER STAGE: POLAROID WASHER DRUM & LINED NOTEBOOK 16x2 LCD
+           ===================================================================== -->
+      <section class="machine-stage-scrapbook">
+        
+        <!-- Left: Washing Machine Framed as a Polaroid Photo (Reference Image Motif) -->
+        <div class="polaroid-frame-card">
+          <!-- Washi tape at top of polaroid -->
+          <div class="washi-tape tape-polaroid"></div>
+          
+          <div class="polaroid-photo-inner">
+            <div class="polaroid-header">
+              <div class="polaroid-title-group">
+                <span class="polaroid-label" id="headingDrumTelemetry">Washing Drum &amp; Motor Telemetry</span>
+                <span class="polaroid-sub" id="subheadingDrumTelemetry">Optocoupled 5V Relay State &amp; Load Dynamics</span>
+              </div>
+              <div class="polaroid-status-pill" id="machineStateBadge">
+                <span class="state-dot"></span>
+                <span id="machineStateText">IDLE // STANDBY</span>
+              </div>
+            </div>
+
+            <!-- Washing Machine Interactive Physical Visualizer -->
+            <div class="washer-photo-view">
+              <div class="washing-machine-model" id="washingMachineGraphic">
+                <div class="model-top-panel">
+                  <div class="panel-dials">
+                    <div class="mini-dial"></div>
+                    <div class="mini-status-led" id="panelRelayLed" title="Relay Coil Status"></div>
+                    <div class="mini-status-led led-wifi" title="ESP32 WiFi"></div>
+                    <div class="mini-status-led led-dfplayer" id="panelDfLed" title="DFPlayer Audio Active"></div>
+                  </div>
+                  <div class="panel-digital-timer" id="cycleTimerDisplay">00:00</div>
+                </div>
+
+                <!-- Porthole Outer Door Rim -->
+                <div class="drum-door-rim" id="drumDoorRim">
+                  <div class="drum-door-glass">
+                    <div class="drum-cylinder" id="drumCylinder">
+                      <div class="drum-paddles paddle-1"></div>
+                      <div class="drum-paddles paddle-2"></div>
+                      <div class="drum-paddles paddle-3"></div>
+                      <div class="drum-water" id="drumWater"></div>
+                      <div class="drum-clothes" id="drumClothes">
+                        <div class="cloth cloth-1"></div>
+                        <div class="cloth cloth-2"></div>
+                        <div class="cloth cloth-3"></div>
+                      </div>
+                    </div>
+                    <div class="glass-glare"></div>
+                  </div>
+                  <div class="door-latch" id="doorLatch" title="Micro Limit Switch Contact Point"></div>
+                </div>
+
+                <!-- Bottom Filter Flap -->
+                <div class="model-bottom-panel">
+                  <div class="filter-flap-container" id="filterFlapContainer">
+                    <div class="filter-flap-led" id="filterWarningLed"></div>
+                    <span class="filter-label" id="labelFilterCompartment">TUMBLER FILTER COMPARTMENT</span>
+                    <button class="btn-inspect-flap" id="btnInspectFlap" title="Simulate physical switch press">
+                      Limit Switch
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cycle Timeline Steps Taped Below -->
+              <div class="timeline-notecards">
+                <div class="timeline-step active" id="stepIdle">
+                  <span class="step-num">01</span>
+                  <span class="step-name" id="stepName1">Standby</span>
+                  <span class="step-desc" id="stepDesc1">Relay Off</span>
+                </div>
+                <div class="timeline-step" id="stepWash">
+                  <span class="step-num">02</span>
+                  <span class="step-name" id="stepName2">Wash</span>
+                  <span class="step-desc" id="stepDesc2">450-1200W</span>
+                </div>
+                <div class="timeline-step" id="stepRinse">
+                  <span class="step-num">03</span>
+                  <span class="step-name" id="stepName3">Spin</span>
+                  <span class="step-desc" id="stepDesc3">1600W Max</span>
+                </div>
+                <div class="timeline-step" id="stepAlert">
+                  <span class="step-num">04</span>
+                  <span class="step-name" id="stepName4">Tumbler Alert</span>
+                  <span class="step-desc" id="stepDesc4">Voice Prompt</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Polaroid Handwritten Bottom Caption (Reference Image Style) -->
+            <div class="polaroid-bottom-caption">
+              <span class="handwritten-caption">&ldquo;Smart Wash Cycle &bull; Clean Clothes, Monitored Power.&rdquo;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Virtual 16x2 LCD & DFPlayer Voice Feed on Ruled Paper -->
+        <div class="ruled-notepad-card">
+          <!-- Tape and Ink Splatter on notepad -->
+          <div class="washi-tape tape-notepad-top"></div>
+          <div class="ink-splatter-dot" aria-hidden="true"></div>
+
+          <!-- Virtual Physical 16x2 LCD Character Mirror -->
+          <div class="lcd-notepad-section">
+            <div class="lcd-sketch-header">
+              <span class="lcd-stamp-tag" id="lcdBadgeTitle">PHYSICAL 16x2 LCD (I2C: 0x27) DIRECT MIRROR</span>
+              <span class="backlight-indicator" id="lcdBacklightLabel">Backlight ON</span>
+            </div>
+
+            <!-- Authentic 16x2 Alphanumeric Bezel -->
+            <div class="lcd-bezel">
+              <div class="lcd-screen" id="lcdScreen">
+                <div class="lcd-line" id="lcdLine1">P:0000W E:0.000k</div>
+                <div class="lcd-line" id="lcdLine2">BILL:Rs.0.00    </div>
+              </div>
+              <div class="lcd-screws top-left"></div>
+              <div class="lcd-screws top-right"></div>
+              <div class="lcd-screws bottom-left"></div>
+              <div class="lcd-screws bottom-right"></div>
+            </div>
+            <span class="lcd-handwritten-note" id="lcdCaptionText">
+              * Direct telemetry mirrored from the real-world onboard I2C 1602 LCD module.
+            </span>
+          </div>
+
+          <!-- DFPlayer Audio Broadcast Box -->
+          <div class="dfplayer-audio-box">
+            <div class="audio-box-header">
+              <div class="audio-title">
+                <span class="speaker-emoji">📢</span>
+                <span id="audioBroadcastTitle">DFPlayer Mini Audio &amp; Speaker Broadcast</span>
+              </div>
+              <span class="audio-status-pill" id="dfAudioPill">READY</span>
+            </div>
+            <div class="audio-status-text" id="dfAudioText">
+              Waiting for wash completion trigger. Speaker: 8Ω 2W connected. (Female Voice)
+            </div>
+            <div class="audio-waveform-bars" id="audioWaveform">
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+            </div>
+          </div>
+
+          <!-- Web Speech API Live Stream -->
+          <div class="speech-stream-box">
+            <div class="stream-header">
+              <div class="stream-title">
+                <span class="stream-pulse"></span>
+                <span id="streamTitleText">Web Speech API Live Transcript</span>
+              </div>
+              <span class="stream-lang" id="streamLangBadge">en-US / auto</span>
+            </div>
+            <div class="stream-body" id="voiceTranscriptBox">
+              <div class="transcript-placeholder" id="transcriptPlaceholder">
+                Microphone listening or standby. Recognized commands ("Start Wash", "Stop Wash", "Tumbler Cleaned" / "ತೊಳೆಯಲು ಪ್ರಾರಂಭಿಸಿ", "ತೊಳೆಯುವುದನ್ನು ನಿಲ್ಲಿಸಿ") appear here.
+              </div>
+              <div class="heard-phrase-container" id="heardPhraseContainer" style="display: none;">
+                <span class="heard-label" id="heardLabelTag">HEARD PHRASE:</span>
+                <span class="heard-quote" id="heardQuote">"Start Wash"</span>
+                <span class="action-tag" id="interpretedActionTag">ACTION: WASH STARTED</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- =====================================================================
+           CONTROLS DECK: Glowing Microphone & Tactile Manual Buttons
+           ===================================================================== -->
+      <section class="controls-scrapbook-deck" aria-label="Interactive Controls Deck">
+        <div class="washi-tape tape-controls-left"></div>
+        <div class="washi-tape tape-controls-right"></div>
+
+        <div class="deck-sketch-header">
+          <div class="deck-title-group">
+            <h3 class="deck-main-title" id="deckMainTitle">Command &amp; Control Interface</h3>
+            <p class="deck-subtitle" id="deckSubtitle">Multimodal interface: Real-time female voice speech input or zero-latency tactile hardware triggers</p>
+          </div>
+          
+          <!-- Bilingual Voice Quick Chips -->
+          <div class="voice-sim-chips" id="voiceSimChipsContainer">
+            <span class="chips-hint" id="chipsHintLabel">Simulate Voice Phrase:</span>
+            <button class="phrase-chip chip-en" data-phrase="Start Wash">"Start Wash"</button>
+            <button class="phrase-chip chip-en" data-phrase="Stop Wash">"Stop Wash"</button>
+            <button class="phrase-chip chip-en" data-phrase="Tumbler Cleaned">"Tumbler Cleaned"</button>
+            <button class="phrase-chip chip-kn" data-phrase="ತೊಳೆಯಲು ಪ್ರಾರಂಭಿಸಿ">"ತೊಳೆಯಲು ಪ್ರಾರಂಭಿಸಿ"</button>
+            <button class="phrase-chip chip-kn" data-phrase="ತೊಳೆಯುವುದನ್ನು ನಿಲ್ಲಿಸಿ">"ತೊಳೆಯುವುದನ್ನು ನಿಲ್ಲಿಸಿ"</button>
+            <button class="phrase-chip chip-kn" data-phrase="ಟಂಬ್ಲರ್ ಸ್ವಚ್ಛಗೊಳಿಸಲಾಗಿದೆ">"ಟಂಬ್ಲರ್ ಸ್ವಚ್ಛಗೊಳಿಸಲಾಗಿದೆ"</button>
+          </div>
+        </div>
+
+        <div class="deck-buttons-grid">
+          
+          <!-- PRIMARY VOICE COMMAND BUTTON -->
+          <div class="voice-button-wrapper">
+            <button class="btn-voice-command" id="btnVoiceCommand" aria-label="Speak Command">
+              <div class="voice-aura"></div>
+              <div class="mic-inner-icon">
+                <svg class="mic-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/>
+                  <path d="M19 10v2a7 7 0 01-14 0v-2"/>
+                  <line x1="12" y1="19" x2="12" y2="23"/>
+                  <line x1="8" y1="23" x2="16" y2="23"/>
+                </svg>
+              </div>
+              <div class="voice-btn-label">
+                <span class="btn-text-main" id="voiceBtnText">Speak Command</span>
+                <span class="btn-text-sub" id="voiceBtnSub">Tap to activate microphone (Female Voice)</span>
+              </div>
+            </button>
+          </div>
+
+          <!-- MANUAL CONTROLS GROUP -->
+          <div class="manual-buttons-group">
+            
+            <!-- START WASH BUTTON (Green glow) -->
+            <button class="btn-manual btn-start-wash" id="btnStartWash">
+              <div class="btn-glare"></div>
+              <div class="btn-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="5 3 19 12 5 21 5 3"/>
+                </svg>
+              </div>
+              <div class="btn-info">
+                <span class="btn-title" id="btnTitleStartWash">START WASH</span>
+                <span class="btn-desc" id="btnDescStartWash">Energize 5V Relay Module</span>
+              </div>
+            </button>
+
+            <!-- STOP WASH BUTTON (Red glow) -->
+            <button class="btn-manual btn-stop-wash" id="btnStopWash">
+              <div class="btn-glare"></div>
+              <div class="btn-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <rect x="6" y="6" width="12" height="12" rx="2"/>
+                </svg>
+              </div>
+              <div class="btn-info">
+                <span class="btn-title" id="btnTitleStopWash">STOP WASH</span>
+                <span class="btn-desc" id="btnDescStopWash">Isolate 230V AC Load</span>
+              </div>
+            </button>
+
+            <!-- CLEAR TUMBLER ALERT BUTTON (Amber glow when active) -->
+            <button class="btn-manual btn-clear-tumbler" id="btnClearTumbler" disabled>
+              <div class="btn-glare"></div>
+              <div class="btn-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <path d="M9 12l2 2 4-4"/>
+                </svg>
+              </div>
+              <div class="btn-info">
+                <span class="btn-title" id="btnTitleClearTumbler">CLEAR TUMBLER ALERT</span>
+                <span class="btn-desc" id="clearBtnDesc">Maintenance Alert Inactive</span>
+              </div>
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- =========================================================================
+         SECTION 2: HARDWARE COMPONENTS GALLERY (Scrapbook Specimen Cards)
+         ========================================================================= -->
+    <section id="hardware-gallery-section" class="tab-content" role="tabpanel" style="display: none;">
+      
+      <div class="section-label-sketch">
+        <span class="sketch-handwritten-title" id="hwGalleryHeading">Core Embedded System Components</span>
+        <span class="sketch-underline"></span>
+      </div>
+
+      <div class="gallery-hero-scrapbook">
+        <div class="washi-tape tape-gallery-top"></div>
+        <div class="hero-left">
+          <div class="section-tag" id="hwSectionTag">HARDWARE ARCHITECTURE SPECIMENS</div>
+          <p class="gallery-intro-text" id="hwGalleryIntro">
+            Comprehensive breakdown of the 8 physical hardware modules engineered into this voice-controlled, energy-monitored smart appliance IoT system.
+          </p>
+        </div>
+        <div class="hero-stats">
+          <div class="gallery-stat-chip">
+            <span class="stat-number">8</span>
+            <span class="stat-label" id="statLabelModules">Hardware Modules</span>
+          </div>
+          <div class="gallery-stat-chip">
+            <span class="stat-number">230V</span>
+            <span class="stat-label" id="statLabelVoltage">Mains Rating</span>
+          </div>
+          <div class="gallery-stat-chip">
+            <span class="stat-number">32-bit</span>
+            <span class="stat-label" id="statLabelEsp">Dual-Core ESP32</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid of 8 Hardware Cards as Scrapbook Taped Cards -->
+      <div class="hardware-scrapbook-grid" id="hardwareGrid">
+        
+        <!-- COMPONENT 1: ESP32 NodeMCU Board -->
+        <article class="hw-specimen-card" data-component-id="esp32">
+          <div class="washi-tape tape-hw-corner"></div>
+          <div class="hw-image-container">
+            <div class="hw-svg-wrapper">
+              <svg viewBox="0 0 320 200" class="hw-illustration" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                  <linearGradient id="pcbGradESP" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#0f2b1d"/>
+                    <stop offset="100%" stop-color="#05140d"/>
+                  </linearGradient>
+                  <linearGradient id="metalShield" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#8a9ba8"/>
+                    <stop offset="50%" stop-color="#cfd8dc"/>
+                    <stop offset="100%" stop-color="#78909c"/>
+                  </linearGradient>
+                  <linearGradient id="goldPin" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#ffd54f"/>
+                    <stop offset="100%" stop-color="#ffb300"/>
+                  </linearGradient>
+                </defs>
+                <rect x="30" y="20" width="260" height="160" rx="8" fill="url(#pcbGradESP)" stroke="#00f2fe" stroke-width="1.5"/>
+                <circle cx="45" cy="35" r="5" fill="#0b0f19" stroke="#ffd54f" stroke-width="1.5"/>
+                <circle cx="275" cy="35" r="5" fill="#0b0f19" stroke="#ffd54f" stroke-width="1.5"/>
+                <circle cx="45" cy="165" r="5" fill="#0b0f19" stroke="#ffd54f" stroke-width="1.5"/>
+                <circle cx="275" cy="165" r="5" fill="#0b0f19" stroke="#ffd54f" stroke-width="1.5"/>
+                <g fill="url(#goldPin)">
+                  <rect x="36" y="50" width="12" height="6" rx="1"/>
+                  <rect x="36" y="60" width="12" height="6" rx="1"/>
+                  <rect x="36" y="70" width="12" height="6" rx="1"/>
+                  <rect x="36" y="80" width="12" height="6" rx="1"/>
+                  <rect x="36" y="90" width="12" height="6" rx="1"/>
+                  <rect x="36" y="100" width="12" height="6" rx="1"/>
+                  <rect x="36" y="110" width="12" height="6" rx="1"/>
+                  <rect x="36" y="120" width="12" height="6" rx="1"/>
+                  <rect x="36" y="130" width="12" height="6" rx="1"/>
+                  <rect x="36" y="140" width="12" height="6" rx="1"/>
+                  <rect x="272" y="50" width="12" height="6" rx="1"/>
+                  <rect x="272" y="60" width="12" height="6" rx="1"/>
+                  <rect x="272" y="70" width="12" height="6" rx="1"/>
+                  <rect x="272" y="80" width="12" height="6" rx="1"/>
+                  <rect x="272" y="90" width="12" height="6" rx="1"/>
+                  <rect x="272" y="100" width="12" height="6" rx="1"/>
+                  <rect x="272" y="110" width="12" height="6" rx="1"/>
+                  <rect x="272" y="120" width="12" height="6" rx="1"/>
+                  <rect x="272" y="130" width="12" height="6" rx="1"/>
+                  <rect x="272" y="140" width="12" height="6" rx="1"/>
+                </g>
+                <rect x="95" y="45" width="130" height="95" rx="4" fill="url(#metalShield)" stroke="#546e7a" stroke-width="1.2"/>
+                <text x="160" y="75" fill="#263238" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="middle">ESP-WROOM-32</text>
+                <text x="160" y="92" fill="#37474f" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">Wi-Fi + BLE SoC</text>
+                <path d="M100 40 L100 28 L220 28 L220 40 M120 28 L120 38 M140 28 L140 38 M160 28 L160 38 M180 28 L180 38 M200 28 L200 38" stroke="#ffd54f" stroke-width="2" fill="none"/>
+                <rect x="135" y="166" width="50" height="20" rx="3" fill="#cfd8dc" stroke="#78909c" stroke-width="1.5"/>
+                <rect x="145" y="174" width="30" height="6" rx="1" fill="#263238"/>
+                <circle cx="95" cy="152" r="3" fill="#00f2fe" filter="drop-shadow(0 0 4px #00f2fe)"/>
+                <circle cx="225" cy="152" r="3" fill="#ff0055" filter="drop-shadow(0 0 4px #ff0055)"/>
+              </svg>
+            </div>
+            <span class="hw-badge chip-mcu" id="hwBadge1">Core Controller</span>
+          </div>
+
+          <div class="hw-content">
+            <h4 class="hw-title" id="hwTitle1">ESP32 NodeMCU Board</h4>
+            
+            <div class="hw-section-block">
+              <span class="hw-label" id="hwLabelDesc1">DESCRIPTION</span>
+              <p class="hw-desc" id="hwDesc1">
+                A powerful 32-bit microcontroller with built-in Wi-Fi, Bluetooth, and standard pin headers. It serves as the main brain for processing data and hosting the web server.
+              </p>
+            </div>
+
+            <div class="hw-section-block usage-block">
+              <span class="hw-label usage-label" id="hwLabelUsage1">PROJECT USAGE</span>
+              <p class="hw-usage" id="hwUsage1">
+                Runs the web server, processes voice commands, reads PZEM-004T data, and triggers the relay and speaker alerts.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- COMPONENT 2: PZEM-004T V3.0 Energy Meter -->
+        <article class="hw-specimen-card" data-component-id="pzem">
+          <div class="washi-tape tape-hw-corner"></div>
+          <div class="hw-image-container">
+            <div class="hw-svg-wrapper">
+              <svg viewBox="0 0 320 200" class="hw-illustration" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                  <linearGradient id="pzemBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#0a3d62"/>
+                    <stop offset="100%" stop-color="#082338"/>
+                  </linearGradient>
+                </defs>
+                <rect x="25" y="30" width="180" height="140" rx="6" fill="url(#pzemBlue)" stroke="#00f2fe" stroke-width="1.5"/>
+                <rect x="35" y="40" width="30" height="30" rx="3" fill="#2d3436" stroke="#636e72"/>
+                <circle cx="50" cy="55" r="7" fill="#b2bec3"/>
+                <line x1="45" y1="55" x2="55" y2="55" stroke="#2d3436" stroke-width="2"/>
+                <rect x="35" y="80" width="30" height="30" rx="3" fill="#2d3436" stroke="#636e72"/>
+                <circle cx="50" cy="95" r="7" fill="#b2bec3"/>
+                <line x1="45" y1="95" x2="55" y2="95" stroke="#2d3436" stroke-width="2"/>
+                <text x="50" y="130" fill="#ff7675" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="700" text-anchor="middle">AC 80-260V</text>
+                <rect x="85" y="65" width="55" height="50" rx="2" fill="#1e272e" stroke="#576574"/>
+                <text x="112" y="88" fill="#c8d6e5" font-family="'JetBrains Mono', monospace" font-size="7" font-weight="700" text-anchor="middle">V9881D</text>
+                <text x="112" y="100" fill="#00d2d3" font-family="'JetBrains Mono', monospace" font-size="6" text-anchor="middle">RMS ASIC</text>
+                <text x="115" y="155" fill="#00d2d3" font-family="'JetBrains Mono', monospace" font-size="8" text-anchor="middle">PZEM-004T V3.0</text>
+                <g transform="translate(230, 45)">
+                  <rect x="0" y="10" width="65" height="85" rx="10" fill="#2d3436" stroke="#00d2d3" stroke-width="2"/>
+                  <circle cx="32" cy="52" r="18" fill="#0b0f19" stroke="#636e72" stroke-width="2"/>
+                  <text x="32" y="56" fill="#00f2fe" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" text-anchor="middle">100A</text>
+                  <path d="M10 95 C 10 120, -30 110, -25 100" stroke="#3498db" stroke-width="2.5" fill="none"/>
+                  <path d="M20 95 C 20 125, -25 125, -25 105" stroke="#e74c3c" stroke-width="2.5" fill="none"/>
+                  <text x="32" y="112" fill="#dfe6e9" font-family="'JetBrains Mono', monospace" font-size="7" text-anchor="middle">Split-Core CT</text>
+                </g>
+              </svg>
+            </div>
+            <span class="hw-badge chip-sensor" id="hwBadge2">Sensor Module</span>
+          </div>
+
+          <div class="hw-content">
+            <h4 class="hw-title" id="hwTitle2">PZEM-004T V3.0 Energy Meter (with CT Coil)</h4>
+            
+            <div class="hw-section-block">
+              <span class="hw-label" id="hwLabelDesc2">DESCRIPTION</span>
+              <p class="hw-desc" id="hwDesc2">
+                A high-precision electrical sensor module designed to measure AC voltage, current, active power, and energy. Uses a split-core current transformer for non-invasive AC current sensing.
+              </p>
+            </div>
+
+            <div class="hw-section-block usage-block">
+              <span class="hw-label usage-label" id="hwLabelUsage2">PROJECT USAGE</span>
+              <p class="hw-usage" id="hwUsage2">
+                Measures real-time power consumption of the washing machine load and sends data to the ESP32 to calculate billing.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- COMPONENT 3: 5V 1-Channel Relay Module -->
+        <article class="hw-specimen-card" data-component-id="relay">
+          <div class="washi-tape tape-hw-corner"></div>
+          <div class="hw-image-container">
+            <div class="hw-svg-wrapper">
+              <svg viewBox="0 0 320 200" class="hw-illustration" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                  <linearGradient id="relayPcb" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#0a3d62"/>
+                    <stop offset="100%" stop-color="#05192d"/>
+                  </linearGradient>
+                  <linearGradient id="blueCube" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#0984e3"/>
+                    <stop offset="100%" stop-color="#005696"/>
+                  </linearGradient>
+                </defs>
+                <rect x="35" y="25" width="250" height="150" rx="8" fill="url(#relayPcb)" stroke="#00f2fe" stroke-width="1.5"/>
+                <rect x="70" y="45" width="130" height="110" rx="5" fill="url(#blueCube)" stroke="#74b9ff" stroke-width="1.5"/>
+                <text x="135" y="75" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="800" text-anchor="middle">SONGLE</text>
+                <text x="135" y="93" fill="#dff9fb" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="600" text-anchor="middle">SRD-05VDC-SL-C</text>
+                <text x="135" y="112" fill="#c7ecee" font-family="'JetBrains Mono', monospace" font-size="8" text-anchor="middle">10A 250VAC / 10A 30VDC</text>
+                <rect x="220" y="45" width="50" height="110" rx="4" fill="#27ae60" stroke="#2ecc71" stroke-width="1.5"/>
+                <circle cx="245" cy="65" r="9" fill="#1b2a47" stroke="#ecf0f1" stroke-width="1.5"/>
+                <circle cx="245" cy="100" r="9" fill="#1b2a47" stroke="#ecf0f1" stroke-width="1.5"/>
+                <circle cx="245" cy="135" r="9" fill="#1b2a47" stroke="#ecf0f1" stroke-width="1.5"/>
+                <circle cx="50" cy="55" r="3.5" fill="#ff3838" filter="drop-shadow(0 0 3px #ff3838)"/>
+                <circle cx="50" cy="145" r="3.5" fill="#2ed573" filter="drop-shadow(0 0 3px #2ed573)"/>
+              </svg>
+            </div>
+            <span class="hw-badge chip-actuator" id="hwBadge3">Switch Actuator</span>
+          </div>
+
+          <div class="hw-content">
+            <h4 class="hw-title" id="hwTitle3">5V 1-Channel Relay Module</h4>
+            
+            <div class="hw-section-block">
+              <span class="hw-label" id="hwLabelDesc3">DESCRIPTION</span>
+              <p class="hw-desc" id="hwDesc3">
+                An optocoupler-isolated electromechanical switch that allows low-voltage DC microcontrollers to control high-voltage AC devices safely.
+              </p>
+            </div>
+
+            <div class="hw-section-block usage-block">
+              <span class="hw-label usage-label" id="hwLabelUsage3">PROJECT USAGE</span>
+              <p class="hw-usage" id="hwUsage3">
+                Acts as the main power switch to turn the 230V AC load (simulated washing machine) ON and OFF based on voice commands.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- COMPONENT 4: DFPlayer Mini MP3 Module -->
+        <article class="hw-specimen-card" data-component-id="dfplayer">
+          <div class="washi-tape tape-hw-corner"></div>
+          <div class="hw-image-container">
+            <div class="hw-svg-wrapper">
+              <svg viewBox="0 0 320 200" class="hw-illustration" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                  <linearGradient id="dfPcb" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#141923"/>
+                    <stop offset="100%" stop-color="#0a0d14"/>
+                  </linearGradient>
+                  <linearGradient id="sdMetal" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#bdc3c7"/>
+                    <stop offset="100%" stop-color="#7f8c8d"/>
+                  </linearGradient>
+                </defs>
+                <rect x="50" y="25" width="220" height="150" rx="6" fill="url(#dfPcb)" stroke="#00f2fe" stroke-width="1.5"/>
+                <rect x="85" y="40" width="110" height="115" rx="4" fill="url(#sdMetal)" stroke="#95a5a6" stroke-width="1.5"/>
+                <text x="140" y="85" fill="#2c3e50" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" text-anchor="middle">MicroSD CARD</text>
+                <text x="140" y="105" fill="#34495e" font-family="'JetBrains Mono', monospace" font-size="8" text-anchor="middle">FAT16 / FAT32</text>
+                <rect x="205" y="50" width="38" height="40" rx="2" fill="#1b2a47" stroke="#34495e"/>
+                <text x="224" y="72" fill="#00f2fe" font-family="'JetBrains Mono', monospace" font-size="7" font-weight="700" text-anchor="middle">YX5200</text>
+                <text x="160" y="170" fill="#00f2fe" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">DFPlayer Mini</text>
+              </svg>
+            </div>
+            <span class="hw-badge chip-audio" id="hwBadge4">Audio Decoder</span>
+          </div>
+
+          <div class="hw-content">
+            <h4 class="hw-title" id="hwTitle4">DFPlayer Mini MP3 Module</h4>
+            
+            <div class="hw-section-block">
+              <span class="hw-label" id="hwLabelDesc4">DESCRIPTION</span>
+              <p class="hw-desc" id="hwDesc4">
+                A compact hardware audio decoder board that reads and plays high-quality .mp3 files directly from a MicroSD card.
+              </p>
+            </div>
+
+            <div class="hw-section-block usage-block">
+              <span class="hw-label usage-label" id="hwLabelUsage4">PROJECT USAGE</span>
+              <p class="hw-usage" id="hwUsage4">
+                Plays pre-recorded voice audio reminders asking the user to clean the tumbler filter once a wash cycle ends.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- COMPONENT 5: 8Ω 2W Mini Speaker -->
+        <article class="hw-specimen-card" data-component-id="speaker">
+          <div class="washi-tape tape-hw-corner"></div>
+          <div class="hw-image-container">
+            <div class="hw-svg-wrapper">
+              <svg viewBox="0 0 320 200" class="hw-illustration" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                  <radialGradient id="coneGrad" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#1e272e"/>
+                    <stop offset="60%" stop-color="#2d3436"/>
+                    <stop offset="90%" stop-color="#636e72"/>
+                    <stop offset="100%" stop-color="#1e272e"/>
+                  </radialGradient>
+                  <radialGradient id="magnetGrad" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#00f2fe"/>
+                    <stop offset="100%" stop-color="#0984e3"/>
+                  </radialGradient>
+                </defs>
+                <circle cx="160" cy="100" r="78" fill="#1e272e" stroke="#00f2fe" stroke-width="2"/>
+                <circle cx="160" cy="100" r="66" fill="url(#coneGrad)" stroke="#57606f" stroke-width="3"/>
+                <circle cx="160" cy="100" r="24" fill="url(#magnetGrad)" stroke="#ffffff" stroke-width="1" filter="drop-shadow(0 0 6px rgba(0,242,254,0.5))"/>
+                <text x="160" y="97" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" text-anchor="middle">8Ω</text>
+                <text x="160" y="109" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="700" text-anchor="middle">2W</text>
+                <path d="M250 80 A 85 85 0 0 1 250 120" stroke="#00f2fe" stroke-width="2" fill="none" opacity="0.6"/>
+              </svg>
+            </div>
+            <span class="hw-badge chip-speaker" id="hwBadge5">Acoustic Output</span>
+          </div>
+
+          <div class="hw-content">
+            <h4 class="hw-title" id="hwTitle5">8Ω 2W Mini Speaker</h4>
+            
+            <div class="hw-section-block">
+              <span class="hw-label" id="hwLabelDesc5">DESCRIPTION</span>
+              <p class="hw-desc" id="hwDesc5">
+                A compact audio output transducer optimized for clear voice speech playback from low-power audio drivers.
+              </p>
+            </div>
+
+            <div class="hw-section-block usage-block">
+              <span class="hw-label usage-label" id="hwLabelUsage5">PROJECT USAGE</span>
+              <p class="hw-usage" id="hwUsage5">
+                Outputs the voice alert prompts triggered by the DFPlayer Mini module.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- COMPONENT 6: 16x2 Character LCD Display (I2C) -->
+        <article class="hw-specimen-card" data-component-id="lcd">
+          <div class="washi-tape tape-hw-corner"></div>
+          <div class="hw-image-container">
+            <div class="hw-svg-wrapper">
+              <svg viewBox="0 0 320 200" class="hw-illustration" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                  <linearGradient id="lcdPcbBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#0c2461"/>
+                    <stop offset="100%" stop-color="#0a192f"/>
+                  </linearGradient>
+                  <linearGradient id="lcdBacklight" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#00cec9"/>
+                    <stop offset="100%" stop-color="#0984e3"/>
+                  </linearGradient>
+                </defs>
+                <rect x="25" y="25" width="270" height="150" rx="6" fill="url(#lcdPcbBlue)" stroke="#00f2fe" stroke-width="1.5"/>
+                <rect x="45" y="45" width="230" height="110" rx="4" fill="#1e272e" stroke="#718093" stroke-width="2"/>
+                <rect x="60" y="60" width="200" height="80" rx="3" fill="url(#lcdBacklight)"/>
+                <text x="70" y="90" fill="#0b0f19" font-family="'Courier New', monospace" font-size="13" font-weight="900" letter-spacing="1">P:0485W E:1.24k</text>
+                <text x="70" y="122" fill="#0b0f19" font-family="'Courier New', monospace" font-size="13" font-weight="900" letter-spacing="1">BILL:Rs.10.54   </text>
+                <rect x="180" y="158" width="85" height="15" rx="3" fill="#2d3436" stroke="#00f2fe"/>
+                <text x="222" y="169" fill="#00f2fe" font-family="'JetBrains Mono', monospace" font-size="7" font-weight="700" text-anchor="middle">I2C: PCF8574T</text>
+              </svg>
+            </div>
+            <span class="hw-badge chip-display" id="hwBadge6">Local Display</span>
+          </div>
+
+          <div class="hw-content">
+            <h4 class="hw-title" id="hwTitle6">16x2 Character LCD Display (I2C)</h4>
+            
+            <div class="hw-section-block">
+              <span class="hw-label" id="hwLabelDesc6">DESCRIPTION</span>
+              <p class="hw-desc" id="hwDesc6">
+                An alphanumeric display screen integrated with an I2C backpack adapter to reduce wiring down to just two signal pins.
+              </p>
+            </div>
+
+            <div class="hw-section-block usage-block">
+              <span class="hw-label usage-label" id="hwLabelUsage6">PROJECT USAGE</span>
+              <p class="hw-usage" id="hwUsage6">
+                Displays local live readings of Power (W), Energy (kWh), and calculated Bill (₹) directly on the physical board.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- COMPONENT 7: Micro Limit Switch -->
+        <article class="hw-specimen-card" data-component-id="switch">
+          <div class="washi-tape tape-hw-corner"></div>
+          <div class="hw-image-container">
+            <div class="hw-svg-wrapper">
+              <svg viewBox="0 0 320 200" class="hw-illustration" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                  <linearGradient id="switchBody" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#2d3436"/>
+                    <stop offset="100%" stop-color="#1e272e"/>
+                  </linearGradient>
+                  <linearGradient id="leverMetal" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#dfe6e9"/>
+                    <stop offset="100%" stop-color="#b2bec3"/>
+                  </linearGradient>
+                </defs>
+                <rect x="80" y="60" width="160" height="90" rx="8" fill="url(#switchBody)" stroke="#00f2fe" stroke-width="1.5"/>
+                <circle cx="105" cy="105" r="7" fill="#0b0f19" stroke="#636e72" stroke-width="2"/>
+                <circle cx="215" cy="105" r="7" fill="#0b0f19" stroke="#636e72" stroke-width="2"/>
+                <rect x="110" y="44" width="14" height="18" rx="2" fill="#ff4757"/>
+                <path d="M195 56 L85 30" stroke="url(#leverMetal)" stroke-width="5" stroke-linecap="round"/>
+                <circle cx="78" cy="28" r="10" fill="#636e72" stroke="#dfe6e9" stroke-width="2"/>
+                <text x="160" y="90" fill="#00f2fe" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" text-anchor="middle">KW12-3 ROLLER</text>
+              </svg>
+            </div>
+            <span class="hw-badge chip-switch" id="hwBadge7">Safety Sensor</span>
+          </div>
+
+          <div class="hw-content">
+            <h4 class="hw-title" id="hwTitle7">Micro Limit Switch</h4>
+            
+            <div class="hw-section-block">
+              <span class="hw-label" id="hwLabelDesc7">DESCRIPTION</span>
+              <p class="hw-desc" id="hwDesc7">
+                A miniature roller-lever mechanical switch that toggles electrical contact when physical pressure is applied or released.
+              </p>
+            </div>
+
+            <div class="hw-section-block usage-block">
+              <span class="hw-label usage-label" id="hwLabelUsage7">PROJECT USAGE</span>
+              <p class="hw-usage" id="hwUsage7">
+                Detects when the tumbler door flap is opened to automatically clear and reset the voice maintenance alert.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- COMPONENT 8: AC 3-Pin Power Cord (5A) -->
+        <article class="hw-specimen-card" data-component-id="cord">
+          <div class="washi-tape tape-hw-corner"></div>
+          <div class="hw-image-container">
+            <div class="hw-svg-wrapper">
+              <svg viewBox="0 0 320 200" class="hw-illustration" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                  <linearGradient id="cordRubber" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#2f3542"/>
+                    <stop offset="100%" stop-color="#1e272e"/>
+                  </linearGradient>
+                  <linearGradient id="brassPin" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f39c12"/>
+                    <stop offset="50%" stop-color="#f1c40f"/>
+                    <stop offset="100%" stop-color="#d35400"/>
+                  </linearGradient>
+                </defs>
+                <path d="M 60 70 C 60 40, 150 40, 150 70 L 150 140 C 150 160, 60 160, 60 140 Z" fill="url(#cordRubber)" stroke="#00f2fe" stroke-width="1.5"/>
+                <rect x="95" y="15" width="20" height="30" rx="3" fill="url(#brassPin)" stroke="#b7791f"/>
+                <rect x="75" y="65" width="14" height="24" rx="2" fill="url(#brassPin)" stroke="#b7791f"/>
+                <rect x="121" y="65" width="14" height="24" rx="2" fill="url(#brassPin)" stroke="#b7791f"/>
+                <text x="105" y="110" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" text-anchor="middle">5A 250V~</text>
+                <path d="M 105 180 C 105 210, 200 170, 220 130 C 240 90, 260 80, 290 85" stroke="#2f3542" stroke-width="18" fill="none" stroke-linecap="round"/>
+                <path d="M 105 180 C 105 210, 200 170, 220 130 C 240 90, 260 80, 290 85" stroke="#00f2fe" stroke-width="1" fill="none" opacity="0.4"/>
+              </svg>
+            </div>
+            <span class="hw-badge chip-mains" id="hwBadge8">Mains Power</span>
+          </div>
+
+          <div class="hw-content">
+            <h4 class="hw-title" id="hwTitle8">AC 3-Pin Power Cord (5A)</h4>
+            
+            <div class="hw-section-block">
+              <span class="hw-label" id="hwLabelDesc8">DESCRIPTION</span>
+              <p class="hw-desc" id="hwDesc8">
+                A standard grounded three-wire AC cable designed to safely connect tabletop appliances to domestic wall sockets.
+              </p>
+            </div>
+
+            <div class="hw-section-block usage-block">
+              <span class="hw-label usage-label" id="hwLabelUsage8">PROJECT USAGE</span>
+              <p class="hw-usage" id="hwUsage8">
+                Supplies 230V AC mains power to both the high-voltage load and the 5V power supply safely.
+              </p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- Vintage Scrapbook Footer -->
+    <footer class="scrapbook-footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <span class="pin-icon">📌</span>
+          <span id="footerFirmwareText">Firmware: v2.4-IoT-Release &bull; ESP32 Free Heap: 184 KB</span>
+          <p class="footer-note" id="footerSubText">Smart Washer IoT Portal &bull; Voice-Controlled Energy &amp; Billing Monitor</p>
+        </div>
+        <div class="footer-right">
+          <span class="scrap-stamp-tag">UART: 115200 Baud</span>
+          <span class="scrap-stamp-tag">I2C: 100 kHz</span>
+          <span class="scrap-stamp-tag" id="footerVoiceBadge">Female Voice: Active</span>
+          <span class="scrap-stamp-tag" id="footerLangBadge">Lang: EN / KN</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

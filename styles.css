@@ -1,0 +1,2490 @@
+/* ==========================================================================
+   SMART WASHER IoT PORTAL - VINTAGE SCRAPBOOK & PAPERCRAFT THEME
+   Directly inspired by the warm journal desk / "Field Notes" aesthetic:
+   Warm parchment desk, torn kraft paper, ruled notebook sheets,
+   authentic washi/masking tape, Polaroid photo frame, cute smiley sticker,
+   and an eye-catching GLITTERING POP SHIMMER effect on the portal title!
+   ========================================================================== */
+
+:root {
+  /* Warm Vintage Desk & Papercraft Palette */
+  --desk-wood: #ede4d3;
+  --desk-wood-deep: #ded0bc;
+  --paper-cream: #fdfaf3;
+  --paper-ivory: #ffffff;
+  --paper-border: #e6dac6;
+  --paper-border-dark: #cfbe9f;
+  
+  /* Kraft Paper & Tape Accents */
+  --kraft-bg: #dfcbab;
+  --kraft-bg-dark: #ceb48a;
+  --kraft-border: #ba9f77;
+  --washi-tape-color: rgba(246, 237, 218, 0.88);
+  --washi-tape-shadow: rgba(80, 55, 25, 0.12);
+  --washi-border: rgba(185, 160, 115, 0.35);
+
+  /* Notebook Ruled Lines */
+  --notebook-line: #e2e8f0;
+  --notebook-margin: #fca5a5;
+
+  /* Ink & Typography Colors */
+  --ink-primary: #2d2417;
+  --ink-secondary: #574c3d;
+  --ink-muted: #847663;
+  --ink-code: #1e293b;
+  --ink-stamp-dark: #1f1b16;
+
+  /* Accent & Glitter Pop Colors */
+  --glitter-gold-dark: #b45309;
+  --glitter-gold: #f59e0b;
+  --glitter-gold-bright: #ffd700;
+  --glitter-cyan: #00f2fe;
+  --glitter-cyan-glow: rgba(0, 242, 254, 0.5);
+  --sticker-pink: #f472b6;
+  --sticker-pink-border: #db2777;
+
+  /* Hardware & Status LED Accents */
+  --status-green: #10b981;
+  --status-green-glow: 0 0 16px rgba(16, 185, 129, 0.6);
+  --status-red: #ef4444;
+  --status-red-glow: 0 0 16px rgba(239, 68, 68, 0.6);
+  --status-amber: #f59e0b;
+  --status-amber-glow: 0 0 18px rgba(245, 158, 11, 0.7);
+
+  /* Fonts */
+  --font-main: 'Outfit', 'Noto Sans Kannada', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-kannada: 'Noto Sans Kannada', sans-serif;
+  --font-handwritten: 'Caveat', cursive, sans-serif;
+  --font-marker: 'Permanent Marker', cursive, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-lcd: 'Share Tech Mono', 'Courier New', monospace;
+
+  /* Paper Depth Shadows */
+  --shadow-desk: 0 20px 50px rgba(60, 42, 18, 0.12), 0 4px 12px rgba(60, 42, 18, 0.06);
+  --shadow-card: 0 10px 24px rgba(70, 50, 20, 0.08), 0 2px 6px rgba(70, 50, 20, 0.04);
+  --shadow-polaroid: 0 16px 36px rgba(60, 42, 18, 0.16), 0 4px 10px rgba(60, 42, 18, 0.08);
+  --shadow-button: 0 6px 14px rgba(60, 42, 18, 0.12);
+  --shadow-button-press: 0 2px 4px rgba(60, 42, 18, 0.18);
+}
+
+/* ==========================================================================
+   BASE RESETS & SCRAPBOOK BODY
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--desk-wood);
+  color: var(--ink-primary);
+  font-family: var(--font-main);
+  overflow-x: hidden;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Authentic Paper & Desk Ambient Backdrop */
+body.scrapbook-body {
+  background: var(--desk-wood);
+  background-image: 
+    radial-gradient(circle at 50% 15%, rgba(255, 255, 255, 0.65) 0%, transparent 65%),
+    radial-gradient(circle at 10% 75%, rgba(215, 195, 165, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(210, 190, 155, 0.35) 0%, transparent 50%),
+    linear-gradient(180deg, #ede4d3 0%, #e2d4bd 100%);
+  background-attachment: fixed;
+  position: relative;
+}
+
+body.lang-kn {
+  font-family: var(--font-kannada), var(--font-main);
+}
+
+/* Subtle Organic Paper Grain Overlay */
+.vintage-paper-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* ==========================================================================
+   MAIN SCRAPBOOK DESK CANVAS
+   Rounded journal page resting on the desk with paper drop shadow
+   ========================================================================== */
+
+.scrapbook-desk {
+  max-width: 1420px;
+  margin: 32px auto;
+  padding: 36px 44px;
+  background-color: var(--paper-cream);
+  border-radius: 28px;
+  border: 2px solid var(--paper-border);
+  box-shadow: var(--shadow-desk), inset 0 0 100px rgba(235, 222, 195, 0.35);
+  position: relative;
+  overflow: visible;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 900px) {
+  .scrapbook-desk {
+    margin: 16px 10px;
+    padding: 24px 18px;
+    border-radius: 20px;
+  }
+}
+
+/* ==========================================================================
+   WASHI TAPE / MASKING TAPE (Reference Motif)
+   ========================================================================== */
+
+.washi-tape {
+  position: absolute;
+  height: 24px;
+  background: linear-gradient(180deg, rgba(248, 241, 224, 0.92) 0%, rgba(236, 224, 198, 0.94) 100%);
+  border-left: 2px dashed var(--washi-border);
+  border-right: 2px dashed var(--washi-border);
+  box-shadow: 0 2px 6px var(--washi-tape-shadow);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Washi Tape Positioning Variants */
+.tape-top-left {
+  top: -12px;
+  left: 60px;
+  width: 130px;
+  transform: rotate(-3.5deg);
+}
+
+.tape-top-right {
+  top: -12px;
+  right: 60px;
+  width: 140px;
+  transform: rotate(3deg);
+}
+
+.tape-card-center {
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1deg);
+  width: 100px;
+}
+
+.tape-card-left {
+  top: -12px;
+  left: 30px;
+  width: 90px;
+  transform: rotate(-2.5deg);
+}
+
+.tape-card-right {
+  top: -12px;
+  right: 30px;
+  width: 90px;
+  transform: rotate(2deg);
+}
+
+.tape-polaroid {
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%) rotate(1.2deg);
+  width: 120px;
+  height: 26px;
+}
+
+.tape-notepad-top {
+  top: -12px;
+  left: 40px;
+  width: 110px;
+  transform: rotate(-2deg);
+}
+
+.tape-controls-left {
+  top: -12px;
+  left: 50px;
+  width: 110px;
+  transform: rotate(-2.5deg);
+}
+
+.tape-controls-right {
+  top: -12px;
+  right: 50px;
+  width: 110px;
+  transform: rotate(2deg);
+}
+
+.tape-gallery-top {
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(0.8deg);
+  width: 130px;
+}
+
+.tape-hw-corner {
+  top: -10px;
+  right: 20px;
+  width: 75px;
+  height: 20px;
+  transform: rotate(4deg);
+}
+
+/* ==========================================================================
+   TOP FIELD NOTES HEADER
+   Hand-drawn flower doodle, brand text, female voice badge & language switcher
+   ========================================================================== */
+
+.scrapbook-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 22px;
+  border-bottom: 1.5px solid var(--paper-border);
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 5;
+}
+
+.header-left-brand {
+  display: flex;
+  align-items: center;
+}
+
+.brand-sketch {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.flower-doodle {
+  width: 32px;
+  height: 56px;
+  opacity: 0.85;
+  filter: drop-shadow(0 1px 2px rgba(60, 42, 18, 0.15));
+}
+
+.brand-text-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-notes-title {
+  font-family: var(--font-handwritten);
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--ink-primary);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.field-notes-sub {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 2px;
+}
+
+/* Right Header Tools */
+.header-right-tools {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Female Voice Stamp Badge */
+.scrapbook-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.stamp-female {
+  background: #fdf2f8;
+  color: #be185d;
+  border: 1.5px dashed #f472b6;
+  box-shadow: 0 2px 6px rgba(244, 114, 182, 0.2);
+  transform: rotate(-1.5deg);
+}
+
+.stamp-female:hover {
+  transform: rotate(0deg) scale(1.04);
+}
+
+.female-glyph {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #db2777;
+}
+
+/* Language Switcher Pin Box */
+.scrapbook-lang-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f7f1e5;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--paper-border-dark);
+  box-shadow: inset 0 1px 3px rgba(60, 42, 18, 0.08);
+}
+
+.lang-pin {
+  font-size: 1rem;
+}
+
+.lang-caption {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--ink-secondary);
+  text-transform: uppercase;
+}
+
+.lang-pill-row {
+  display: flex;
+  gap: 6px;
+}
+
+.scrap-lang-btn {
+  background: #ffffff;
+  border: 1.5px solid var(--paper-border);
+  color: var(--ink-secondary);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-family: var(--font-main);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(60, 42, 18, 0.08);
+}
+
+.scrap-lang-btn:hover {
+  border-color: var(--ink-primary);
+  color: var(--ink-primary);
+  transform: translateY(-1px);
+}
+
+.scrap-lang-btn.active {
+  background: var(--ink-primary);
+  color: #ffffff;
+  border-color: var(--ink-primary);
+  box-shadow: 0 2px 6px rgba(45, 36, 23, 0.25);
+}
+
+/* ==========================================================================
+   HERO BANNER & GLITTERING POP TITLE
+   The center attraction: Glittering dynamic shimmer pop effect on the title,
+   cute pink smiley sticker, and hand-drawn star doodles
+   ========================================================================== */
+
+.scrapbook-hero-banner {
+  position: relative;
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1.5px solid var(--paper-border);
+  box-shadow: var(--shadow-card);
+  padding: 40px 32px 28px 32px;
+  margin-bottom: 30px;
+  text-align: center;
+  overflow: visible;
+}
+
+/* Cute Pink Smiley Sticker Motif (From User Reference Image) */
+.pink-smiley-sticker {
+  position: absolute;
+  top: -24px;
+  right: 140px;
+  width: 54px;
+  height: 54px;
+  transform: rotate(-10deg);
+  filter: drop-shadow(0 4px 10px rgba(219, 39, 119, 0.35));
+  z-index: 12;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+
+.pink-smiley-sticker:hover {
+  transform: rotate(5deg) scale(1.15);
+}
+
+/* Hand-drawn Star Doodles */
+.star-doodle {
+  position: absolute;
+  font-size: 1.5rem;
+  color: var(--ink-secondary);
+  opacity: 0.55;
+  pointer-events: none;
+  animation: starFloat 4s ease-in-out infinite alternate;
+}
+
+.star-1 {
+  top: 18px;
+  left: 80px;
+  animation-delay: 0s;
+}
+
+.star-2 {
+  top: 40px;
+  right: 80px;
+  font-size: 1.9rem;
+  animation-delay: 1.2s;
+}
+
+.star-3 {
+  bottom: 60px;
+  left: 60px;
+  font-size: 1.2rem;
+  animation-delay: 2.4s;
+}
+
+@keyframes starFloat {
+  0% { transform: translateY(0px) rotate(0deg); opacity: 0.45; }
+  100% { transform: translateY(-6px) rotate(20deg); opacity: 0.85; }
+}
+
+/* Glitter Hero Container */
+.glitter-hero-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px auto 28px auto;
+  padding: 26px 40px;
+  max-width: 960px;
+  position: relative;
+  
+  /* UNIQUE WASHING MACHINE WATER IMAGE BACKGROUND IN LIGHT LOW-COLOR OPACITY */
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.94) 0%, rgba(240, 249, 255, 0.88) 100%),
+    url('washer_bg.jpg') center/cover no-repeat;
+  background-blend-mode: overlay;
+
+  border-radius: 22px;
+  border: 1.5px solid rgba(14, 165, 233, 0.28);
+  box-shadow: 
+    0 8px 30px rgba(14, 165, 233, 0.08),
+    inset 0 0 50px rgba(255, 255, 255, 0.95);
+  
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.glitter-hero-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0284c7 0%, #06b6d4 50%, #3b82f6 100%);
+}
+
+.node-status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.handwritten-arrow {
+  font-family: var(--font-handwritten);
+  font-size: 1.5rem;
+  color: #0284c7;
+}
+
+.status-pin-text {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #0369a1;
+  background: #e0f2fe;
+  padding: 3px 12px;
+  border-radius: 6px;
+  border: 1px dashed #0284c7;
+  letter-spacing: 0.08em;
+  box-shadow: 0 1px 3px rgba(2, 132, 199, 0.15);
+}
+
+/* ==========================================================================
+   FULL-PAGE AMBIENT GLITTER & SPARKLE SYSTEM
+   Floating golden star particles, diamond sparkles, and shimmering cards
+   ========================================================================== */
+
+.glitter-particles-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999;
+  overflow: hidden;
+}
+
+.tiny-bubble-dot {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.9), rgba(245, 158, 11, 0.45) 70%, rgba(217, 119, 6, 0.1));
+  box-shadow: 0 0 4px rgba(245, 158, 11, 0.25), inset 0 0 2px rgba(255, 255, 255, 0.6);
+  opacity: 0;
+  animation: floatTinyBubble 5.5s ease-out infinite;
+}
+
+@keyframes floatTinyBubble {
+  0% {
+    transform: translateY(0) scale(0.3);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.7;
+    transform: translateY(-20px) scale(1);
+  }
+  80% {
+    opacity: 0.4;
+    transform: translateY(-80px) scale(0.85);
+  }
+  100% {
+    transform: translateY(-110px) scale(0.2);
+    opacity: 0;
+  }
+}
+
+/* Micro Dot Accent on Cards */
+.scrapbook-card::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #d97706;
+  opacity: 0.35;
+  box-shadow: 0 0 6px rgba(245, 158, 11, 0.6);
+  animation: microDotPulse 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes microDotPulse {
+  0%, 100% { transform: scale(0.8); opacity: 0.3; }
+  50% { transform: scale(1.4); opacity: 0.75; box-shadow: 0 0 8px rgba(245, 158, 11, 0.9); }
+}
+
+/* ==========================================================================
+   ELEGANT GOLD & DIAMOND GLITTERING POP TITLE ANIMATION
+   Softened warm gold, metallic bronze, and diamond shimmer — NO neon green/cyan halos!
+   ========================================================================== */
+
+.title-sparkle-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  position: relative;
+  padding: 6px 12px;
+}
+
+.glitter-pop-title {
+  font-family: var(--font-main);
+  font-size: 3.1rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  text-align: center;
+
+  /* Fresh Ocean Blue, Cyan Shimmer & Deep Navy Gradient */
+  background: linear-gradient(
+    110deg,
+    #0f172a 0%,
+    #0369a1 25%,
+    #0284c7 48%,
+    #06b6d4 65%,
+    #0f172a 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* Clean Crisp Outline without heavy orange blur */
+  -webkit-text-stroke: 0.5px rgba(2, 132, 199, 0.25);
+  filter: drop-shadow(0 1px 2px rgba(2, 132, 199, 0.2));
+
+  animation: glitterSweep 3.8s linear infinite;
+  cursor: default;
+  transition: transform 0.3s ease;
+}
+
+.glitter-pop-title:hover {
+  transform: scale(1.02);
+  filter: drop-shadow(0 2px 4px rgba(2, 132, 199, 0.35));
+}
+
+.highlight-glitter {
+  display: inline-block;
+  background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 2px rgba(6, 182, 212, 0.3));
+}
+
+/* Glitter Sweep Keyframe across letters */
+@keyframes glitterSweep {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: 0% 0;
+  }
+}
+
+/* Twinkling Diamond Sparkle Particles Left & Right */
+.glitter-sparkle {
+  font-size: 2.2rem;
+  line-height: 1;
+  display: inline-block;
+  color: #f59e0b;
+  animation: sparkleTwinkle 2.5s ease-in-out infinite;
+}
+
+.glitter-sparkle.s-left {
+  animation-delay: 0s;
+}
+
+.glitter-sparkle.s-right {
+  animation-delay: 1.25s;
+}
+
+@keyframes sparkleTwinkle {
+  0%, 100% {
+    transform: scale(0.9) rotate(0deg);
+    opacity: 0.8;
+    filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.4));
+  }
+  50% {
+    transform: scale(1.3) rotate(180deg);
+    opacity: 1;
+    filter: 
+      drop-shadow(0 0 12px rgba(255, 215, 0, 0.8))
+      drop-shadow(0 0 20px rgba(254, 243, 199, 0.85));
+  }
+}
+
+.hero-handwritten-subtitle {
+  font-family: var(--font-handwritten);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--ink-secondary);
+  margin-top: 8px;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 768px) {
+  .glitter-pop-title {
+    font-size: 2.1rem;
+  }
+  .glitter-sparkle {
+    font-size: 1.6rem;
+  }
+  .hero-handwritten-subtitle {
+    font-size: 1.3rem;
+  }
+}
+
+/* ==========================================================================
+   VINTAGE FOLDER TABS NAVIGATION
+   ========================================================================== */
+
+.folder-tabs-nav {
+  display: inline-flex;
+  gap: 12px;
+  background: #f7f1e5;
+  padding: 8px 12px;
+  border-radius: 16px;
+  border: 1.5px solid var(--paper-border-dark);
+  box-shadow: inset 0 2px 4px rgba(60, 42, 18, 0.06);
+}
+
+.folder-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--ink-secondary);
+  padding: 10px 22px;
+  border-radius: 12px;
+  font-family: var(--font-main);
+  font-size: 0.96rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.folder-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--ink-primary);
+  transform: translateY(-1px);
+}
+
+.folder-tab-btn.active {
+  background: #ffffff;
+  color: var(--ink-primary);
+  border-color: var(--paper-border-dark);
+  box-shadow: 0 4px 12px rgba(60, 42, 18, 0.1);
+}
+
+.tab-counter-badge {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   QUICK TELEMETRY STATUS STRIP
+   Monospace stamp strip with live hardware indicators
+   ========================================================================== */
+
+.scrapbook-status-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 10px 20px;
+  background: #fcf8ee;
+  border: 1px dashed var(--paper-border-dark);
+  border-radius: 10px;
+  margin-bottom: 30px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  box-shadow: inset 0 1px 3px rgba(60, 42, 18, 0.04);
+}
+
+.strip-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.strip-label {
+  color: var(--ink-muted);
+}
+
+.strip-badge {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.74rem;
+}
+
+.relay-tag {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.relay-tag.active {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.strip-highlight {
+  color: #b45309;
+  font-weight: 700;
+}
+
+.strip-ok {
+  color: #047857;
+  font-weight: 700;
+}
+
+.strip-voice {
+  color: #be185d;
+  font-weight: 700;
+}
+
+.strip-sep {
+  color: var(--paper-border-dark);
+}
+
+/* ==========================================================================
+   CRITICAL TUMBLER MAINTENANCE ALERT BANNER
+   Warning tape aesthetic with bright yellow/black hazard accents
+   ========================================================================== */
+
+.alert-paper-banner {
+  display: none;
+  background: #fefce8;
+  border: 2px solid #eab308;
+  border-radius: 16px;
+  padding: 18px 24px;
+  margin-bottom: 28px;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(234, 179, 8, 0.25);
+  animation: alertPulse 2s infinite ease-in-out;
+}
+
+.alert-paper-banner.active {
+  display: block;
+}
+
+@keyframes alertPulse {
+  0%, 100% { box-shadow: 0 4px 15px rgba(234, 179, 8, 0.2); }
+  50% { box-shadow: 0 8px 26px rgba(234, 179, 8, 0.45); }
+}
+
+.alert-banner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.alert-icon-sign {
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.alert-copy {
+  flex: 1;
+}
+
+.alert-title-text {
+  font-family: var(--font-main);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #854d0e;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+
+.alert-desc-text {
+  font-size: 0.88rem;
+  color: #713f12;
+  line-height: 1.4;
+}
+
+.btn-clear-alert-tape {
+  background: #854d0e;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-family: var(--font-main);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(133, 77, 14, 0.3);
+  transition: all 0.2s ease;
+}
+
+.btn-clear-alert-tape:hover {
+  background: #713f12;
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   TELEMETRY SCRAPBOOK GRID (Cards 1, 2, 3)
+   Card 1: Active Power -> Torn Kraft Paper with washi tape
+   Card 2: Total Energy -> Lined Notebook Sheet with red margin
+   Card 3: Calculated Bill -> Vintage Ledger / Receipt Card
+   ========================================================================== */
+
+.section-label-sketch {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.sketch-handwritten-title {
+  font-family: var(--font-handwritten);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ink-primary);
+  letter-spacing: -0.01em;
+}
+
+.sketch-underline {
+  width: 90px;
+  height: 3px;
+  background: var(--glitter-gold);
+  border-radius: 2px;
+  margin-top: 2px;
+}
+
+.telemetry-scrapbook-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+  margin-bottom: 34px;
+}
+
+@media (max-width: 1024px) {
+  .telemetry-scrapbook-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+}
+
+/* Base Card Style */
+.scrapbook-card {
+  position: relative;
+  border-radius: 18px;
+  padding: 28px 24px 22px 24px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.scrapbook-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(60, 42, 18, 0.12);
+}
+
+/* CARD 1: TORN KRAFT PAPER (Active Power) */
+.card-kraft {
+  background: linear-gradient(145deg, #dfcbab 0%, #ceb48a 100%);
+  border: 1.5px solid var(--kraft-border);
+  color: var(--ink-primary);
+}
+
+/* CARD 2: LINED NOTEBOOK PAPER (Total Energy) */
+.card-ruled {
+  background: #ffffff;
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 28px,
+    var(--notebook-line) 29px
+  );
+  border: 1.5px solid var(--paper-border);
+  border-left: 3px solid var(--notebook-margin);
+  color: var(--ink-primary);
+}
+
+/* CARD 3: PARCHMENT LEDGER / INVOICE (Calculated Bill) */
+.card-invoice {
+  background: #fffef9;
+  border: 1.5px dashed var(--paper-border-dark);
+  color: var(--ink-primary);
+}
+
+/* Card Header */
+.card-sketch-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.paper-cat-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--ink-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.paper-card-title {
+  font-family: var(--font-main);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--ink-primary);
+  margin-top: 2px;
+}
+
+/* Stamp Badges on Cards */
+.kraft-stamp-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.power-badge {
+  background: #fef3c7;
+  color: #b45309;
+  border: 1.5px solid #fde68a;
+}
+
+.energy-badge {
+  background: #d1fae5;
+  color: #065f46;
+  border: 1.5px solid #a7f3d0;
+}
+
+.bill-badge {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1.5px solid #fecaca;
+}
+
+.stamp-svg {
+  width: 24px;
+  height: 24px;
+}
+
+.rupee-char {
+  font-size: 1.5rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* Big Telemetry Numbers */
+.card-main-reading {
+  margin-bottom: 20px;
+}
+
+.digit-display {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.reading-num {
+  font-family: var(--font-mono);
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--ink-primary);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.reading-unit {
+  font-family: var(--font-main);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink-secondary);
+}
+
+.rupee-symbol-prefix {
+  font-family: var(--font-mono);
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #b91c1c;
+}
+
+/* Vintage Gauge Progress Bars */
+.vintage-gauge-wrap {
+  margin-top: 10px;
+}
+
+.vintage-gauge-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.vintage-gauge-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #d97706, #ffd700);
+  border-radius: 4px;
+  transition: width 0.35s ease;
+}
+
+.fill-energy {
+  background: linear-gradient(90deg, #059669, #34d399);
+}
+
+.vintage-gauge-legend {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-muted);
+  margin-top: 4px;
+}
+
+.meter-note-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--ink-muted);
+  margin-top: 8px;
+}
+
+.sync-dot-text {
+  color: #059669;
+  font-weight: 700;
+}
+
+.formula-stamp {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--ink-secondary);
+  background: #f8fafc;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px dashed #cbd5e1;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+/* Card Footers */
+.card-footer-notes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(60, 42, 18, 0.2);
+}
+
+.note-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.note-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+}
+
+.note-val {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ink-primary);
+  margin-top: 2px;
+}
+
+.badge-grade {
+  color: #059669;
+}
+
+.note-divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(60, 42, 18, 0.15);
+}
+
+/* ==========================================================================
+   CENTER STAGE: POLAROID WASHER DRUM & LINED NOTEBOOK 16x2 LCD
+   Directly matching the Polaroid and Lined Note motifs from reference image
+   ========================================================================== */
+
+.machine-stage-scrapbook {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 32px;
+  margin-bottom: 34px;
+}
+
+@media (max-width: 1024px) {
+  .machine-stage-scrapbook {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   POLAROID PHOTO FRAME (Reference Image Motif)
+   White photo paper border, rotated -1deg, handwritten bottom caption
+   -------------------------------------------------------------------------- */
+
+.polaroid-frame-card {
+  position: relative;
+  background: #ffffff;
+  padding: 18px 18px 36px 18px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  box-shadow: var(--shadow-polaroid);
+  transform: rotate(-1deg);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.polaroid-frame-card:hover {
+  transform: rotate(0deg) scale(1.01);
+  box-shadow: 0 20px 45px rgba(60, 42, 18, 0.2);
+}
+
+.polaroid-photo-inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.polaroid-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.polaroid-title-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.polaroid-label {
+  font-family: var(--font-main);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--ink-primary);
+}
+
+.polaroid-sub {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--ink-muted);
+}
+
+.polaroid-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.polaroid-status-pill .state-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #64748b;
+}
+
+/* Machine View Container */
+.washer-photo-view {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Washing Machine Physical Model */
+.washing-machine-model {
+  width: 100%;
+  max-width: 320px;
+  background: #ffffff;
+  border: 2px solid #cbd5e1;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: border-color 0.3s ease;
+}
+
+.washing-machine-model.has-alert {
+  border-color: #f59e0b;
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.35);
+}
+
+/* Top Panel */
+.model-top-panel {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1.5px solid #f1f5f9;
+  margin-bottom: 14px;
+}
+
+.panel-dials {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mini-dial {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  border: 2px solid #94a3b8;
+  position: relative;
+}
+
+.mini-dial::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 6px;
+  background: #475569;
+}
+
+.mini-status-led {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  transition: all 0.2s ease;
+}
+
+.mini-status-led.active {
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.led-wifi {
+  background: #00f2fe;
+  box-shadow: 0 0 6px #00f2fe;
+}
+
+.led-dfplayer.active {
+  background: #ec4899;
+  box-shadow: 0 0 8px #ec4899;
+}
+
+.panel-digital-timer {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0f172a;
+  background: #f1f5f9;
+  padding: 2px 10px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+}
+
+/* Drum Porthole */
+.drum-door-rim {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #e2e8f0, #94a3b8);
+  padding: 10px;
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.15), 0 6px 16px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drum-door-glass {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #0f172a;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.drum-cylinder {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  transition: transform 0.1s linear;
+}
+
+.drum-cylinder.spinning-slow {
+  animation: drumSpin 2.4s linear infinite;
+}
+
+.drum-cylinder.spinning-fast,
+.drum-cylinder.agitating {
+  animation: drumSpin 1.1s linear infinite;
+}
+
+@keyframes drumSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Washer Active Motor Shaking & Vibration when STARTED */
+.washing-machine-model.running {
+  animation: washerVibrate 0.16s ease-in-out infinite alternate;
+}
+
+@keyframes washerVibrate {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(1px, -1px); }
+  100% { transform: translate(-1px, 1px); }
+}
+
+.drum-water.filled {
+  height: 50% !important;
+  background: linear-gradient(180deg, rgba(0, 242, 254, 0.3) 0%, rgba(59, 130, 246, 0.6) 100%);
+  animation: waterSlosh 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes waterSlosh {
+  0% { height: 44%; transform: skewY(2deg); }
+  100% { height: 54%; transform: skewY(-2deg); }
+}
+
+.drum-cylinder.agitating .drum-clothes {
+  animation: clothesTumble 1.1s ease-in-out infinite alternate;
+}
+
+@keyframes clothesTumble {
+  0% { transform: translateX(-50%) translateY(0) rotate(0deg); }
+  50% { transform: translateX(-50%) translateY(-18px) rotate(180deg); }
+  100% { transform: translateX(-50%) translateY(-32px) rotate(360deg); }
+}
+
+.washing-machine-model.running .panel-digital-timer {
+  color: #00f2fe;
+  text-shadow: 0 0 10px #00f2fe, 0 0 20px #00f2fe;
+  animation: timerGlow 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes timerGlow {
+  0% { opacity: 0.8; }
+  100% { opacity: 1; text-shadow: 0 0 14px #00f2fe; }
+}
+
+.drum-paddles {
+  position: absolute;
+  background: #475569;
+  border-radius: 2px;
+}
+
+.paddle-1 { top: 15px; left: 50%; width: 10px; height: 32px; transform: translateX(-50%); }
+.paddle-2 { bottom: 25px; left: 30px; width: 32px; height: 10px; }
+.paddle-3 { bottom: 25px; right: 30px; width: 32px; height: 10px; }
+
+.drum-water {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: rgba(0, 242, 254, 0.35);
+  backdrop-filter: blur(1px);
+  transition: height 1s ease;
+}
+
+.drum-cylinder.spinning-slow ~ .drum-water,
+.drum-cylinder.spinning-fast ~ .drum-water {
+  height: 48%;
+}
+
+.drum-clothes {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.cloth {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+}
+
+.cloth-1 { background: #3b82f6; transform: rotate(15deg); }
+.cloth-2 { background: #ec4899; transform: rotate(-25deg); }
+.cloth-3 { background: #eab308; transform: rotate(45deg); }
+
+.glass-glare {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.door-latch {
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 28px;
+  background: #64748b;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.door-latch:hover {
+  background: #3b82f6;
+}
+
+/* Bottom Filter Flap */
+.model-bottom-panel {
+  width: 100%;
+  margin-top: 16px;
+  padding-top: 10px;
+  border-top: 1.5px solid #f1f5f9;
+}
+
+.filter-flap-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8fafc;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.filter-flap-container.alert-mode {
+  background: #fefce8;
+  border-color: #f59e0b;
+}
+
+.filter-flap-led {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #cbd5e1;
+}
+
+.filter-flap-container.alert-mode .filter-flap-led {
+  background: #f59e0b;
+  box-shadow: 0 0 10px #f59e0b;
+}
+
+.filter-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--ink-muted);
+}
+
+.btn-inspect-flap {
+  background: #e2e8f0;
+  border: none;
+  color: var(--ink-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-inspect-flap:hover {
+  background: #cbd5e1;
+}
+
+/* Timeline Steps */
+.timeline-notecards {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  margin-top: 18px;
+}
+
+.timeline-step {
+  flex: 1;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 8px 6px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+
+.timeline-step.active {
+  border-color: #3b82f6;
+  background: #eff6ff;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+}
+
+.step-num {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #94a3b8;
+}
+
+.timeline-step.active .step-num {
+  color: #3b82f6;
+}
+
+.step-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--ink-primary);
+  margin-top: 2px;
+}
+
+.step-desc {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--ink-muted);
+}
+
+/* Handwritten Polaroid Bottom Caption */
+.polaroid-bottom-caption {
+  text-align: center;
+  padding-top: 18px;
+}
+
+.handwritten-caption {
+  font-family: var(--font-handwritten);
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: var(--ink-primary);
+  letter-spacing: -0.01em;
+}
+
+/* --------------------------------------------------------------------------
+   RULED NOTEPAD: 16x2 LCD & DFPLAYER AUDIO STREAM
+   Reference Motif: Lined paper with ink splatter
+   -------------------------------------------------------------------------- */
+
+.ruled-notepad-card {
+  position: relative;
+  background: #ffffff;
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 28px,
+    var(--notebook-line) 29px
+  );
+  border: 1.5px solid var(--paper-border);
+  border-left: 3px solid var(--notebook-margin);
+  border-radius: 14px;
+  padding: 28px 24px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.ink-splatter-dot {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  width: 14px;
+  height: 14px;
+  background: var(--ink-primary);
+  border-radius: 50%;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* 16x2 LCD Alphanumeric Display Bezel */
+.lcd-notepad-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.lcd-sketch-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.lcd-stamp-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--ink-muted);
+}
+
+.backlight-indicator {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: #059669;
+  font-weight: 700;
+}
+
+.lcd-bezel {
+  background: #1e293b;
+  border: 3px solid #0f172a;
+  border-radius: 8px;
+  padding: 14px 18px;
+  box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.6), 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.lcd-screen {
+  background: #007bb6;
+  background: linear-gradient(180deg, #0093d5 0%, #006b9e 100%);
+  border-radius: 4px;
+  padding: 10px 14px;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.lcd-line {
+  font-family: var(--font-lcd);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.16em;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+  white-space: pre;
+  line-height: 1.3;
+}
+
+.lcd-screws {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #94a3b8;
+  border: 1px solid #475569;
+}
+
+.lcd-screws.top-left { top: 4px; left: 4px; }
+.lcd-screws.top-right { top: 4px; right: 4px; }
+.lcd-screws.bottom-left { bottom: 4px; left: 4px; }
+.lcd-screws.bottom-right { bottom: 4px; right: 4px; }
+
+.lcd-handwritten-note {
+  font-family: var(--font-handwritten);
+  font-size: 1.05rem;
+  color: var(--ink-muted);
+  margin-top: 6px;
+}
+
+/* DFPlayer Mini Audio Box */
+.dfplayer-audio-box {
+  background: #fdf2f8;
+  border: 1.5px dashed #f472b6;
+  border-radius: 10px;
+  padding: 14px 18px;
+}
+
+.audio-box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.audio-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-main);
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #9d174d;
+}
+
+.audio-status-pill {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: #fbcfe8;
+  color: #831843;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.audio-status-pill.playing {
+  background: #f43f5e;
+  color: #ffffff;
+  animation: audioPulse 0.8s infinite alternate;
+}
+
+@keyframes audioPulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
+
+.audio-status-text {
+  font-size: 0.84rem;
+  color: #831843;
+  line-height: 1.35;
+}
+
+.audio-waveform-bars {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 20px;
+  margin-top: 8px;
+}
+
+.wave-bar {
+  width: 4px;
+  height: 6px;
+  background: #ec4899;
+  border-radius: 2px;
+  transition: height 0.15s ease;
+}
+
+.audio-waveform-bars.active .wave-bar {
+  animation: waveDance 0.5s infinite alternate ease-in-out;
+}
+
+.audio-waveform-bars.active .wave-bar:nth-child(2) { animation-delay: 0.1s; }
+.audio-waveform-bars.active .wave-bar:nth-child(3) { animation-delay: 0.2s; }
+.audio-waveform-bars.active .wave-bar:nth-child(4) { animation-delay: 0.15s; }
+.audio-waveform-bars.active .wave-bar:nth-child(5) { animation-delay: 0.25s; }
+.audio-waveform-bars.active .wave-bar:nth-child(6) { animation-delay: 0.05s; }
+.audio-waveform-bars.active .wave-bar:nth-child(7) { animation-delay: 0.3s; }
+.audio-waveform-bars.active .wave-bar:nth-child(8) { animation-delay: 0.18s; }
+
+@keyframes waveDance {
+  0% { height: 4px; }
+  100% { height: 18px; }
+}
+
+/* Web Speech Stream Box */
+.speech-stream-box {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 14px 18px;
+  transition: border-color 0.3s ease;
+}
+
+.stream-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.stream-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-main);
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #334155;
+}
+
+.stream-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+}
+
+.stream-lang {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.stream-body {
+  font-size: 0.85rem;
+  color: #475569;
+  line-height: 1.4;
+}
+
+.heard-phrase-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.heard-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #0284c7;
+}
+
+.heard-quote {
+  font-family: var(--font-handwritten);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.action-tag {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #059669;
+  background: #d1fae5;
+  padding: 2px 8px;
+  border-radius: 4px;
+  align-self: flex-start;
+}
+
+/* ==========================================================================
+   CONTROLS SCRAPBOOK DECK
+   Glowing Microphone Button & Tactile Manual Buttons
+   ========================================================================== */
+
+.controls-scrapbook-deck {
+  position: relative;
+  background: #ffffff;
+  border: 1.5px solid var(--paper-border);
+  border-radius: 20px;
+  padding: 32px 30px;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 34px;
+}
+
+.deck-sketch-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.deck-title-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.deck-main-title {
+  font-family: var(--font-main);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--ink-primary);
+}
+
+.deck-subtitle {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+  margin-top: 2px;
+}
+
+/* Voice Simulation Quick Chips */
+.voice-sim-chips {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chips-hint {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--ink-muted);
+}
+
+.phrase-chip {
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  color: #334155;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-family: var(--font-main);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.phrase-chip:hover {
+  background: #eff6ff;
+  border-color: #3b82f6;
+  color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+/* Buttons Grid */
+.deck-buttons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 24px;
+}
+
+@media (max-width: 900px) {
+  .deck-buttons-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+/* PRIMARY VOICE COMMAND BUTTON */
+.voice-button-wrapper {
+  display: flex;
+  align-items: stretch;
+}
+
+.btn-voice-command {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: linear-gradient(145deg, #1e293b, #0f172a);
+  color: #ffffff;
+  border: 2px solid #334155;
+  border-radius: 16px;
+  padding: 22px 24px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.25);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-voice-command:hover {
+  transform: translateY(-2px);
+  border-color: #00f2fe;
+  box-shadow: 0 14px 30px rgba(0, 242, 254, 0.25);
+}
+
+.btn-voice-command.listening {
+  border-color: #f43f5e;
+  background: linear-gradient(145deg, #881337, #4c0519);
+  box-shadow: 0 0 25px rgba(244, 63, 94, 0.5);
+}
+
+.mic-inner-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(0, 242, 254, 0.15);
+  border: 2px solid #00f2fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00f2fe;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+.btn-voice-command.listening .mic-inner-icon {
+  background: #f43f5e;
+  border-color: #fda4af;
+  color: #ffffff;
+  animation: micPulse 1s infinite alternate;
+}
+
+@keyframes micPulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.12); }
+}
+
+.mic-svg {
+  width: 26px;
+  height: 26px;
+}
+
+.voice-btn-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.btn-text-main {
+  font-family: var(--font-main);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.btn-text-sub {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+/* MANUAL BUTTONS GROUP */
+.manual-buttons-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn-manual {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  border-radius: 12px;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+}
+
+.btn-manual:hover {
+  transform: translateY(-2px);
+}
+
+.btn-manual .btn-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-manual .btn-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.btn-manual .btn-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-manual .btn-title {
+  font-family: var(--font-main);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.btn-manual .btn-desc {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  opacity: 0.85;
+}
+
+/* START WASH: Tactile Green */
+.btn-start-wash {
+  background: #f0fdf4;
+  border-color: #86efac;
+  color: #14532d;
+}
+
+.btn-start-wash:hover {
+  background: #dcfce7;
+  box-shadow: 0 6px 16px rgba(22, 163, 74, 0.25);
+}
+
+.btn-start-wash .btn-icon {
+  background: #22c55e;
+  color: #ffffff;
+}
+
+/* STOP WASH: Tactile Red */
+.btn-stop-wash {
+  background: #fef2f2;
+  border-color: #fca5a5;
+  color: #7f1d1d;
+}
+
+.btn-stop-wash:hover {
+  background: #fee2e2;
+  box-shadow: 0 6px 16px rgba(220, 38, 38, 0.25);
+}
+
+.btn-stop-wash .btn-icon {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+/* CLEAR TUMBLER ALERT: Amber */
+.btn-clear-tumbler {
+  background: #fffbeb;
+  border-color: #fde68a;
+  color: #78350f;
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-clear-tumbler.alert-active {
+  opacity: 1;
+  cursor: pointer;
+  background: #fef3c7;
+  border-color: #f59e0b;
+  color: #92400e;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+  animation: amberPulse 1.5s infinite alternate;
+}
+
+@keyframes amberPulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.02); }
+}
+
+.btn-clear-tumbler .btn-icon {
+  background: #f59e0b;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   SECTION 2: HARDWARE COMPONENTS GALLERY (8 SPECIMEN CARDS)
+   Collector archival specimen card aesthetic with washi tape on corner
+   ========================================================================== */
+
+.gallery-hero-scrapbook {
+  position: relative;
+  background: #ffffff;
+  border: 1.5px solid var(--paper-border);
+  border-radius: 18px;
+  padding: 28px 30px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.hero-left {
+  max-width: 650px;
+}
+
+.section-tag {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #b45309;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.gallery-intro-text {
+  font-size: 0.95rem;
+  color: var(--ink-secondary);
+  line-height: 1.5;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 16px;
+}
+
+.gallery-stat-chip {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 10px 18px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-number {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--ink-primary);
+  line-height: 1.1;
+}
+
+.stat-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+}
+
+/* Hardware Cards Grid */
+.hardware-scrapbook-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 34px;
+}
+
+@media (max-width: 1200px) {
+  .hardware-scrapbook-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .hardware-scrapbook-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Hardware Specimen Card */
+.hw-specimen-card {
+  position: relative;
+  background: #ffffff;
+  border: 1.5px solid var(--paper-border);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.hw-specimen-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(60, 42, 18, 0.14);
+}
+
+.hw-image-container {
+  position: relative;
+  background: #0f172a;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 12px;
+  margin-bottom: 14px;
+}
+
+.hw-svg-wrapper {
+  width: 100%;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hw-illustration {
+  width: 100%;
+  height: 100%;
+}
+
+.hw-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: rgba(15, 23, 42, 0.85);
+  color: #00f2fe;
+  border: 1px solid rgba(0, 242, 254, 0.4);
+  padding: 2px 8px;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+}
+
+.hw-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.hw-title {
+  font-family: var(--font-main);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--ink-primary);
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+
+.hw-section-block {
+  margin-bottom: 10px;
+}
+
+.hw-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--ink-muted);
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.usage-label {
+  color: #b45309;
+}
+
+.hw-desc {
+  font-size: 0.84rem;
+  color: var(--ink-secondary);
+  line-height: 1.45;
+}
+
+.hw-usage {
+  font-size: 0.84rem;
+  color: var(--ink-primary);
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   SCRAPBOOK FOOTER
+   Warm leather/parchment base strip with firmware metadata
+   ========================================================================== */
+
+.scrapbook-footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1.5px solid var(--paper-border);
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-secondary);
+}
+
+.footer-note {
+  font-family: var(--font-handwritten);
+  font-size: 1.2rem;
+  color: var(--ink-muted);
+  margin-top: 2px;
+}
+
+.footer-right {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.scrap-stamp-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: #f7f1e5;
+  border: 1px solid var(--paper-border-dark);
+  color: var(--ink-secondary);
+  padding: 4px 10px;
+  border-radius: 4px;
+}
